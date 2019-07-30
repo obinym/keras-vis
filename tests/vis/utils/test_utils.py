@@ -1,6 +1,6 @@
 import pytest
 from vis.utils import utils
-from keras import backend as K
+from tensorflow.python.keras import backend as K
 
 
 def test_get_img_shape_on_2d_image():
