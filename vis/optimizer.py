@@ -2,6 +2,8 @@ from __future__ import absolute_import
 
 import numpy as np
 from tensorflow.python.keras import backend as K
+import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
 
 from .callbacks import Print
 from .grad_modifiers import get
@@ -56,7 +58,7 @@ class Optimizer(object):
 
         # Compute gradient of overall with respect to `wrt` tensor.
         if self.wrt_tensor_is_input_tensor:
-            grads = K.gradients(overall_loss, self.input_tensor)[0]
+            grads = tf.compat.v1.gradients(overall_loss, self.input_tensor)[0]
         else:
             grads = K.gradients(overall_loss, self.wrt_tensor)[0]
         if norm_grads:
